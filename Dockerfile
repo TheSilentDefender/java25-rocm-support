@@ -23,6 +23,13 @@ RUN apt-get update && apt-get install -y rocm-opencl-runtime \
 ENV JAVA_HOME=/usr/lib/jvm/temurin-25-jdk-amd64
 ENV PATH="${JAVA_HOME}/bin:${PATH}"
 
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb \
+    && dpkg -i cuda-keyring_1.1-1_all.deb \
+    && rm cuda-keyring_1.1-1_all.deb \
+    && apt-get update \
+    && apt-get install -y cuda-toolkit-12-2 \
+    && rm -rf /var/lib/apt/lists/*
+    
 RUN groupadd -g 988 pterodactyl || true \
     && useradd -u 988 -g 988 -d /home/container -m container
 
