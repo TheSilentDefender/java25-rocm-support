@@ -27,7 +27,7 @@ RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86
     && dpkg -i cuda-keyring_1.1-1_all.deb \
     && rm cuda-keyring_1.1-1_all.deb \
     && apt-get update \
-    && apt-get install -y cuda-toolkit-12-2 \
+    && apt-get install -y cuda-toolkit \
     && rm -rf /var/lib/apt/lists/*
     
 RUN groupadd -g 988 pterodactyl || true \
